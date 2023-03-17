@@ -66,3 +66,16 @@ class Product(models.Model):
     specification = models.TextField(blank=True)
     labels = models.CharField(choices=LABELS,max_length=50)
     stock = models.CharField(choices=STOCK,max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=300)
+    email = models.EmailField(max_length=300)
+    subject = models.TextField()
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name
