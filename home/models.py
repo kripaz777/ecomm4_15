@@ -55,7 +55,7 @@ LABELS = (('new','new'),('hot','hot'),('sale','sale'),('','default'))
 STOCK = (('In stock','In stock'),('Out of stock','Out of stock'))
 class Product(models.Model):
     name = models.CharField(max_length=300)
-    price = models.ImageField()
+    price = models.IntegerField()
     discounted_price = models.IntegerField(default = 0)
     image = models.ImageField(upload_to='media')
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
