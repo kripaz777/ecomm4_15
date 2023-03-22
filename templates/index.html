@@ -63,7 +63,7 @@
             <div class="container-fluid">
                 <div class="brand-slider">
                     {% for brand in brands %}
-                    <div class="brand-item"><img src="{{brand.image.url}}" style = "height: 80; width:150;" alt=""></div>
+                    <a href = "/brand/{{brand.slug}}"><div class="brand-item"><img src="{{brand.image.url}}" style = "height: 80; width:150;" alt=""></div></a>
                     {% endfor %}
                 </div>
             </div>
@@ -218,7 +218,7 @@
                     <div class="col-lg-3">
                         <div class="product-item">
                             <div class="product-title">
-                                <a href="#">{{hot.name}}</a>
+                                <a href="/product/{{hot.slug}}">{{hot.name}}</a>
                                 <div class="ratting">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -228,7 +228,7 @@
                                 </div>
                             </div>
                             <div class="product-image">
-                                <a href="product-detail.html">
+                                <a href="/product/{{hot.slug}}">
                                     <img src="{{hot.image.url}}" alt="Product Image">
                                 </a>
                                 <div class="product-action">
@@ -283,7 +283,7 @@
                     <div class="col-lg-3">
                         <div class="product-item">
                             <div class="product-title">
-                                <a href="#">{{hot.name}}</a>
+                                <a href="/product/{{hot.slug}}">{{hot.name}}</a>
                                 <div class="ratting">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -293,7 +293,7 @@
                                 </div>
                             </div>
                             <div class="product-image">
-                                <a href="product-detail.html">
+                                <a href="/product/{{hot.slug}}">
                                     <img src="{{hot.image.url}}" alt="Product Image">
                                 </a>
                                 <div class="product-action">
@@ -308,7 +308,7 @@
                                 {% else %}
                                 <h3><span>$</span>{{hot.price}}</h3>
                                 {% endif%}
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Add To Cart</a>
                             </div>
                         </div>
                     </div>
