@@ -80,3 +80,14 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
+
+class ProductReview(models.Model):
+    name = models.CharField(max_length=300)
+    email = models.EmailField(max_length=300)
+    review = models.TextField(blank = True)
+    star = models.IntegerField()
+    slug = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
