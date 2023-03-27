@@ -50,3 +50,20 @@ class SearchView(Base):
         else:
             return redirect('/')
         return render(request, 'search.html', self.views)
+
+
+def productReview(request,slug):
+    if request.method == 'POST':
+        username = request.user.username
+        email = request.user.email
+        comment = request.POST['comment']
+        star = request.POST['star']
+        data = ProductReview.objects.create(
+            username = username,
+            email = email,
+            review = comment,
+            star = star,
+            slug = slug
+        )
+        data.save()
+    return redirect(f'/product/{slug}')
