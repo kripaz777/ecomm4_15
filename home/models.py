@@ -85,7 +85,7 @@ class ProductReview(models.Model):
     name = models.CharField(max_length=300)
     email = models.EmailField(max_length=300)
     review = models.TextField(blank = True)
-    star = models.IntegerField()
+    star = models.IntegerField(default=5)
     slug = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 

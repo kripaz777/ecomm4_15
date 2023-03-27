@@ -57,12 +57,12 @@ def productReview(request,slug):
         username = request.user.username
         email = request.user.email
         comment = request.POST['comment']
-        star = request.POST['star']
+        # star = request.POST['star']
         data = ProductReview.objects.create(
-            username = username,
+            name = username,
             email = email,
             review = comment,
-            star = star,
+            # star = star,
             slug = slug
         )
         data.save()

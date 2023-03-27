@@ -136,19 +136,17 @@
                                                 <i class="far fa-star"></i>
                                             </div>
                                             <div class="row form">
-                                                <div class="col-sm-6">
-                                                    <input type="text" placeholder="Name">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <input type="email" placeholder="Email">
+                                                <form method = "POST" action = "/product_review/{{detail.slug}}">
+                                                {% csrf_token %}
+                                                <div class="col-sm-12">
+                                                    <textarea name = "comment" placeholder="Review"></textarea>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <textarea placeholder="Review"></textarea>
+                                                    <button type = "submit">Submit</button>
                                                 </div>
-                                                <div class="col-sm-12">
-                                                    <button>Submit</button>
-                                                </div>
+                                                </form>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
