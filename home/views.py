@@ -37,7 +37,7 @@ class ProductDetailView(Base):
     def get(self,request,slug):
         self.views
         self.views['product_detail'] = Product.objects.filter(slug = slug)
-
+        self.views['product_review'] = ProductReview.objects.filter(slug = slug)
         return render(request,'product-detail.html',self.views)
 
 
