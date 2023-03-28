@@ -130,16 +130,19 @@
                                         {% endfor %}
                                         <div class="reviews-submit">
                                             <h4>Give your Review:</h4>
-                                            <div class="ratting">
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </div>
+
                                             <div class="row form">
                                                 <form method = "POST" action = "/product_review/{{detail.slug}}">
                                                 {% csrf_token %}
+                                                    <div class="ratting">
+                                                <select  id="star" name="star">
+                                                <option value="5">5</option>
+                                                <option value="4">4</option>
+                                                <option value="3">3</option>
+                                                <option value="2">2</option>
+                                                    <option value="1">1</option>
+                                              </select>
+                                            </div>
                                                 <div class="col-sm-12">
                                                     <textarea name = "comment" placeholder="Review"></textarea>
                                                 </div>
