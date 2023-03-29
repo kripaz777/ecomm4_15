@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from django.views.generic import View
 from .models import *
+from django.contrib  import messages
+from django.contrib.auth.models import User
 # Create your views here.
 class Base(View):
     views = {}
@@ -67,3 +69,35 @@ def productReview(request,slug):
         )
         data.save()
     return redirect(f'/product/{slug}')
+
+def signup(request):
+    if request.method == 'POST':
+        f_name = request.POST['fname']
+        l_name = request.POST['lname']
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        cpassword = request.POST['cpassword']
+
+        if password == cpassword:
+            if User.objects.filter(username = username).exists():
+                messages.error(request,'The username is already taken!')
+                return redirect('/signup')
+            elif User.objects.filter(email = email).exists():
+                messages.error(request, 'The email is already in use!')
+                return redirect('/signup')
+            else:
+                user = User.objects.create(
+                    username = username,
+                    email = email,
+                    first_name = f_name,
+                    last_name = l_name,
+                    password = password
+                )
+                user.save()
+                return redirect('/signup')
+        else:
+            messages.error(request, 'The password and confirm password is not same!')
+            return redirect('/signup')
+
+    return render(request,'signup.html')
