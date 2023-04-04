@@ -4,6 +4,10 @@ from .models import *
 from django.contrib  import messages
 from django.contrib.auth.models import User
 # Create your views here.
+def count_cart(request):
+    username = request.user.username
+    cart_number = Cart.objects.filter( username=username, checkout=False).count()
+    return cart_number
 class Base(View):
     views = {}
     views['categories'] = Category.objects.all()
@@ -12,6 +16,7 @@ class Base(View):
 class HomeView(Base):
     def get(self,request):
         self.views
+        self.views['cart_no'] = count_cart(request)
         self.views['ads'] = Ad.objects.all()
         self.views['sliders'] = Slider.objects.all()
         self.views['hots'] = Product.objects.filter(labels = 'hot')
@@ -22,6 +27,7 @@ class HomeView(Base):
 class CategoryView(Base):
     def get(self,request,slug):
         self.views
+        self.views['cart_no'] = count_cart(request)
         ids = Category.objects.get(slug = slug).id
         self.views['product_category'] = Product.objects.filter(category_id = ids)
 
@@ -30,6 +36,7 @@ class CategoryView(Base):
 class BrandView(Base):
     def get(self,request,slug):
         self.views
+        self.views['cart_no'] = count_cart(request)
         ids = Brand.objects.get(slug = slug).id
         self.views['product_brand'] = Product.objects.filter(brand_id = ids)
 
@@ -38,6 +45,7 @@ class BrandView(Base):
 class ProductDetailView(Base):
     def get(self,request,slug):
         self.views
+        self.views['cart_no'] = count_cart(request)
         self.views['product_detail'] = Product.objects.filter(slug = slug)
         self.views['product_review'] = ProductReview.objects.filter(slug = slug)
         return render(request,'product-detail.html',self.views)
@@ -46,6 +54,7 @@ class ProductDetailView(Base):
 class SearchView(Base):
     def get(self,request):
         self.views
+        self.views['cart_no'] = count_cart(request)
         query = request.GET.get('query')
         if query !='':
             self.views['search_product'] = Product.objects.filter(name__icontains = query)
@@ -105,6 +114,7 @@ def signup(request):
 class CartView(Base):
     def get(self,request):
         self.views
+        self.views['cart_no'] = count_cart(request)
         username = request.user.username
         cart_info = Cart.objects.filter(username = username,checkout = False)
         self.views['cart_product'] = cart_info
