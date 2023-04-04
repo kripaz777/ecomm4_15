@@ -32,6 +32,9 @@
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
+                                    {% for message in messages %}
+                            <font color = "red"><center>{{message}}</center></font>
+                            {% endfor %}
                                     {% for cart in cart_product %}
                                         <tr>
                                             <td>

@@ -106,7 +106,16 @@ class CartView(Base):
     def get(self,request):
         self.views
         username = request.user.username
-        self.views['cart_product'] = Cart.objects.filter(username = username,checkout = False)
+        cart_info = Cart.objects.filter(username = username,checkout = False)
+        self.views['cart_product'] = cart_info
+        all_total = 0
+        for i in cart_info:
+            print(i)
+            all_total = all_total + i.total
+        self.views['all_total'] = all_total
+        self.views['shipping'] = 50
+        self.views['grand_total'] =  all_total + self.views['shipping']
+
         return render(request,'cart.html',self.views)
 def add_to_cart(request,slug):
     username = request.user.username
